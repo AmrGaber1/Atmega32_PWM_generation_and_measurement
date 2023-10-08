@@ -1,0 +1,1396 @@
+
+PWM_generator.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000007f0  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          0000000b  00800060  00800060  00000864  2**0
+                  ALLOC
+  2 .debug_aranges 00000100  00000000  00000000  00000864  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 00000261  00000000  00000000  00000964  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000b37  00000000  00000000  00000bc5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000283  00000000  00000000  000016fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000a6d  00000000  00000000  0000197f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000001a0  00000000  00000000  000023ec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000a3a  00000000  00000000  0000258c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_macinfo 0000ce79  00000000  00000000  00002fc6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 000000e8  00000000  00000000  0000fe3f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 62 02 	jmp	0x4c4	; 0x4c4 <__vector_6>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 2f 02 	jmp	0x45e	; 0x45e <__vector_10>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 50 03 	jmp	0x6a0	; 0x6a0 <__vector_16>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	ab 36       	cpi	r26, 0x6B	; 107
+  6c:	b1 07       	cpc	r27, r17
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 83 03 	call	0x706	; 0x706 <main>
+  74:	0c 94 f6 03 	jmp	0x7ec	; 0x7ec <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <timer0_compare_mode_init>:
+ *                      Functions Definitions
+ *******************************************************************************/
+/*
+ * This function initiates timer0 to run in compare mode
+ * */
+void timer0_compare_mode_init(const timer0_CTC_config_t * timer0_CTC_config){
+  7c:	df 93       	push	r29
+  7e:	cf 93       	push	r28
+  80:	00 d0       	rcall	.+0      	; 0x82 <timer0_compare_mode_init+0x6>
+  82:	cd b7       	in	r28, 0x3d	; 61
+  84:	de b7       	in	r29, 0x3e	; 62
+  86:	9a 83       	std	Y+2, r25	; 0x02
+  88:	89 83       	std	Y+1, r24	; 0x01
+	/*This bit must be set when timer0 is used in a non-PWM mode*/
+	TCCR0 |= (1<<FOC0);
+  8a:	a3 e5       	ldi	r26, 0x53	; 83
+  8c:	b0 e0       	ldi	r27, 0x00	; 0
+  8e:	e3 e5       	ldi	r30, 0x53	; 83
+  90:	f0 e0       	ldi	r31, 0x00	; 0
+  92:	80 81       	ld	r24, Z
+  94:	80 68       	ori	r24, 0x80	; 128
+  96:	8c 93       	st	X, r24
+
+	/*The 2 bits WGM00 and WGM01 must be set to 0,1 consecutively*/
+	TCCR0 |= (1 << WGM01);
+  98:	a3 e5       	ldi	r26, 0x53	; 83
+  9a:	b0 e0       	ldi	r27, 0x00	; 0
+  9c:	e3 e5       	ldi	r30, 0x53	; 83
+  9e:	f0 e0       	ldi	r31, 0x00	; 0
+  a0:	80 81       	ld	r24, Z
+  a2:	88 60       	ori	r24, 0x08	; 8
+  a4:	8c 93       	st	X, r24
+	TCCR0 &= ~(1 << WGM00);
+  a6:	a3 e5       	ldi	r26, 0x53	; 83
+  a8:	b0 e0       	ldi	r27, 0x00	; 0
+  aa:	e3 e5       	ldi	r30, 0x53	; 83
+  ac:	f0 e0       	ldi	r31, 0x00	; 0
+  ae:	80 81       	ld	r24, Z
+  b0:	8f 7b       	andi	r24, 0xBF	; 191
+  b2:	8c 93       	st	X, r24
+
+	/*Adjust the compare value per the configured value*/
+	OCR0 = timer0_CTC_config -> timer0_compare_value;
+  b4:	ac e5       	ldi	r26, 0x5C	; 92
+  b6:	b0 e0       	ldi	r27, 0x00	; 0
+  b8:	e9 81       	ldd	r30, Y+1	; 0x01
+  ba:	fa 81       	ldd	r31, Y+2	; 0x02
+  bc:	81 81       	ldd	r24, Z+1	; 0x01
+  be:	8c 93       	st	X, r24
+
+	/*clear the interrupt flag*/
+	TIFR |= (1 << OCF0);
+  c0:	a8 e5       	ldi	r26, 0x58	; 88
+  c2:	b0 e0       	ldi	r27, 0x00	; 0
+  c4:	e8 e5       	ldi	r30, 0x58	; 88
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	80 81       	ld	r24, Z
+  ca:	82 60       	ori	r24, 0x02	; 2
+  cc:	8c 93       	st	X, r24
+
+	/*enable or disable interrupt per the configured value*/
+	if((timer0_CTC_config -> timer0_interrupt_state) == timer0_interrupt_enable){
+  ce:	e9 81       	ldd	r30, Y+1	; 0x01
+  d0:	fa 81       	ldd	r31, Y+2	; 0x02
+  d2:	82 81       	ldd	r24, Z+2	; 0x02
+  d4:	81 30       	cpi	r24, 0x01	; 1
+  d6:	41 f4       	brne	.+16     	; 0xe8 <timer0_compare_mode_init+0x6c>
+		TIMSK |= (1 << OCIE0);
+  d8:	a9 e5       	ldi	r26, 0x59	; 89
+  da:	b0 e0       	ldi	r27, 0x00	; 0
+  dc:	e9 e5       	ldi	r30, 0x59	; 89
+  de:	f0 e0       	ldi	r31, 0x00	; 0
+  e0:	80 81       	ld	r24, Z
+  e2:	82 60       	ori	r24, 0x02	; 2
+  e4:	8c 93       	st	X, r24
+  e6:	07 c0       	rjmp	.+14     	; 0xf6 <timer0_compare_mode_init+0x7a>
+	}else{
+		TIMSK &= ~(1 << OCIE0);
+  e8:	a9 e5       	ldi	r26, 0x59	; 89
+  ea:	b0 e0       	ldi	r27, 0x00	; 0
+  ec:	e9 e5       	ldi	r30, 0x59	; 89
+  ee:	f0 e0       	ldi	r31, 0x00	; 0
+  f0:	80 81       	ld	r24, Z
+  f2:	8d 7f       	andi	r24, 0xFD	; 253
+  f4:	8c 93       	st	X, r24
+	}
+
+	/*set the prescaler to the selected one*/
+	TCCR0 = (TCCR0 & ~(0x07))| ((timer0_CTC_config -> timer0_clock_select)&0x07);
+  f6:	a3 e5       	ldi	r26, 0x53	; 83
+  f8:	b0 e0       	ldi	r27, 0x00	; 0
+  fa:	e3 e5       	ldi	r30, 0x53	; 83
+  fc:	f0 e0       	ldi	r31, 0x00	; 0
+  fe:	80 81       	ld	r24, Z
+ 100:	98 2f       	mov	r25, r24
+ 102:	98 7f       	andi	r25, 0xF8	; 248
+ 104:	e9 81       	ldd	r30, Y+1	; 0x01
+ 106:	fa 81       	ldd	r31, Y+2	; 0x02
+ 108:	80 81       	ld	r24, Z
+ 10a:	87 70       	andi	r24, 0x07	; 7
+ 10c:	89 2b       	or	r24, r25
+ 10e:	8c 93       	st	X, r24
+
+}
+ 110:	0f 90       	pop	r0
+ 112:	0f 90       	pop	r0
+ 114:	cf 91       	pop	r28
+ 116:	df 91       	pop	r29
+ 118:	08 95       	ret
+
+0000011a <timer0_callbackInit>:
+
+/*This function is used to initialize timer0 callback function*/
+void timer0_callbackInit(void(* timer0_callbackFunction)(void)){
+ 11a:	df 93       	push	r29
+ 11c:	cf 93       	push	r28
+ 11e:	00 d0       	rcall	.+0      	; 0x120 <timer0_callbackInit+0x6>
+ 120:	cd b7       	in	r28, 0x3d	; 61
+ 122:	de b7       	in	r29, 0x3e	; 62
+ 124:	9a 83       	std	Y+2, r25	; 0x02
+ 126:	89 83       	std	Y+1, r24	; 0x01
+	timer0_callback_local = timer0_callbackFunction;
+ 128:	89 81       	ldd	r24, Y+1	; 0x01
+ 12a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 12c:	90 93 65 00 	sts	0x0065, r25
+ 130:	80 93 64 00 	sts	0x0064, r24
+}
+ 134:	0f 90       	pop	r0
+ 136:	0f 90       	pop	r0
+ 138:	cf 91       	pop	r28
+ 13a:	df 91       	pop	r29
+ 13c:	08 95       	ret
+
+0000013e <timer1_PWM_init>:
+ * the frequency is calculated based on the following equation
+ * (fPWM = fCPU/(Prescaler*(1+TOP))
+ * with the compare value, the TOP value, the prescaler and the inversion selection as
+ * input to the function
+ * */
+void timer1_PWM_init(const timer1_PWM_config_t * timer1_PWM_config){
+ 13e:	df 93       	push	r29
+ 140:	cf 93       	push	r28
+ 142:	00 d0       	rcall	.+0      	; 0x144 <timer1_PWM_init+0x6>
+ 144:	cd b7       	in	r28, 0x3d	; 61
+ 146:	de b7       	in	r29, 0x3e	; 62
+ 148:	9a 83       	std	Y+2, r25	; 0x02
+ 14a:	89 83       	std	Y+1, r24	; 0x01
+	if(timer1_PWM_config != NULL_PTR){
+ 14c:	89 81       	ldd	r24, Y+1	; 0x01
+ 14e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 150:	00 97       	sbiw	r24, 0x00	; 0
+ 152:	09 f4       	brne	.+2      	; 0x156 <timer1_PWM_init+0x18>
+ 154:	6b c0       	rjmp	.+214    	; 0x22c <timer1_PWM_init+0xee>
+		/*Select either inverting or non_inverting mode*/
+		if(timer1_PWM_config -> timer1_PWM_inversion_select == timer1_PWM_inverting){
+ 156:	e9 81       	ldd	r30, Y+1	; 0x01
+ 158:	fa 81       	ldd	r31, Y+2	; 0x02
+ 15a:	81 81       	ldd	r24, Z+1	; 0x01
+ 15c:	83 30       	cpi	r24, 0x03	; 3
+ 15e:	41 f4       	brne	.+16     	; 0x170 <timer1_PWM_init+0x32>
+			TCCR1A = (TCCR1A & ~(3 << 4)) | ((timer1_PWM_inverting & 0x03) << 4);
+ 160:	af e4       	ldi	r26, 0x4F	; 79
+ 162:	b0 e0       	ldi	r27, 0x00	; 0
+ 164:	ef e4       	ldi	r30, 0x4F	; 79
+ 166:	f0 e0       	ldi	r31, 0x00	; 0
+ 168:	80 81       	ld	r24, Z
+ 16a:	80 63       	ori	r24, 0x30	; 48
+ 16c:	8c 93       	st	X, r24
+ 16e:	0d c0       	rjmp	.+26     	; 0x18a <timer1_PWM_init+0x4c>
+		}else if(timer1_PWM_config -> timer1_PWM_inversion_select == timer1_PWM_non_inverting){
+ 170:	e9 81       	ldd	r30, Y+1	; 0x01
+ 172:	fa 81       	ldd	r31, Y+2	; 0x02
+ 174:	81 81       	ldd	r24, Z+1	; 0x01
+ 176:	82 30       	cpi	r24, 0x02	; 2
+ 178:	41 f4       	brne	.+16     	; 0x18a <timer1_PWM_init+0x4c>
+			TCCR1A = (TCCR1A & ~(3 << 4)) | ((timer1_PWM_non_inverting & 0x03) << 4);
+ 17a:	af e4       	ldi	r26, 0x4F	; 79
+ 17c:	b0 e0       	ldi	r27, 0x00	; 0
+ 17e:	ef e4       	ldi	r30, 0x4F	; 79
+ 180:	f0 e0       	ldi	r31, 0x00	; 0
+ 182:	80 81       	ld	r24, Z
+ 184:	8f 7c       	andi	r24, 0xCF	; 207
+ 186:	80 62       	ori	r24, 0x20	; 32
+ 188:	8c 93       	st	X, r24
+		}
+		/*Clear FOC1A and FOC1B bits for PWM mode*/
+		TCCR1A &= ~(3 << 2);
+ 18a:	af e4       	ldi	r26, 0x4F	; 79
+ 18c:	b0 e0       	ldi	r27, 0x00	; 0
+ 18e:	ef e4       	ldi	r30, 0x4F	; 79
+ 190:	f0 e0       	ldi	r31, 0x00	; 0
+ 192:	80 81       	ld	r24, Z
+ 194:	83 7f       	andi	r24, 0xF3	; 243
+ 196:	8c 93       	st	X, r24
+
+		/*Select Fast PWM mode with OCR1A as the TOP*/
+		TCCR1A |= (1 << WGM10) | (1 << WGM11);
+ 198:	af e4       	ldi	r26, 0x4F	; 79
+ 19a:	b0 e0       	ldi	r27, 0x00	; 0
+ 19c:	ef e4       	ldi	r30, 0x4F	; 79
+ 19e:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a0:	80 81       	ld	r24, Z
+ 1a2:	83 60       	ori	r24, 0x03	; 3
+ 1a4:	8c 93       	st	X, r24
+		TCCR1B |= (1 << WGM12) | (1 << WGM13);
+ 1a6:	ae e4       	ldi	r26, 0x4E	; 78
+ 1a8:	b0 e0       	ldi	r27, 0x00	; 0
+ 1aa:	ee e4       	ldi	r30, 0x4E	; 78
+ 1ac:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ae:	80 81       	ld	r24, Z
+ 1b0:	88 61       	ori	r24, 0x18	; 24
+ 1b2:	8c 93       	st	X, r24
+
+		/*Set the OCR1B to the compare value*/
+		OCR1B = timer1_PWM_config -> timer1_PWM_compare_value;
+ 1b4:	a8 e4       	ldi	r26, 0x48	; 72
+ 1b6:	b0 e0       	ldi	r27, 0x00	; 0
+ 1b8:	e9 81       	ldd	r30, Y+1	; 0x01
+ 1ba:	fa 81       	ldd	r31, Y+2	; 0x02
+ 1bc:	83 81       	ldd	r24, Z+3	; 0x03
+ 1be:	94 81       	ldd	r25, Z+4	; 0x04
+ 1c0:	11 96       	adiw	r26, 0x01	; 1
+ 1c2:	9c 93       	st	X, r25
+ 1c4:	8e 93       	st	-X, r24
+
+		/*set the OCR1A to the TOP value*/
+		OCR1A = timer1_PWM_config -> timer1_PWM_TOP;
+ 1c6:	aa e4       	ldi	r26, 0x4A	; 74
+ 1c8:	b0 e0       	ldi	r27, 0x00	; 0
+ 1ca:	e9 81       	ldd	r30, Y+1	; 0x01
+ 1cc:	fa 81       	ldd	r31, Y+2	; 0x02
+ 1ce:	85 81       	ldd	r24, Z+5	; 0x05
+ 1d0:	96 81       	ldd	r25, Z+6	; 0x06
+ 1d2:	11 96       	adiw	r26, 0x01	; 1
+ 1d4:	9c 93       	st	X, r25
+ 1d6:	8e 93       	st	-X, r24
+
+		/*set the pin OC1B as output*/
+		DDRD |= 1<<PD4;
+ 1d8:	a1 e3       	ldi	r26, 0x31	; 49
+ 1da:	b0 e0       	ldi	r27, 0x00	; 0
+ 1dc:	e1 e3       	ldi	r30, 0x31	; 49
+ 1de:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	80 61       	ori	r24, 0x10	; 16
+ 1e4:	8c 93       	st	X, r24
+
+		/*Enable the clock -> set the prescaler and store it for later PWM enable*/
+		PWM_clock_select = timer1_PWM_config -> timer1_clock_select;
+ 1e6:	e9 81       	ldd	r30, Y+1	; 0x01
+ 1e8:	fa 81       	ldd	r31, Y+2	; 0x02
+ 1ea:	82 81       	ldd	r24, Z+2	; 0x02
+ 1ec:	80 93 60 00 	sts	0x0060, r24
+
+		/*Enable or disable PWM based on the given value*/
+		if((timer1_PWM_config -> timer1_PWM_state) == timer1_PWM_state_enable){
+ 1f0:	e9 81       	ldd	r30, Y+1	; 0x01
+ 1f2:	fa 81       	ldd	r31, Y+2	; 0x02
+ 1f4:	80 81       	ld	r24, Z
+ 1f6:	81 30       	cpi	r24, 0x01	; 1
+ 1f8:	69 f4       	brne	.+26     	; 0x214 <timer1_PWM_init+0xd6>
+			TCCR1B = (TCCR1B & (0xF8)) | (PWM_clock_select & 0x07);
+ 1fa:	ae e4       	ldi	r26, 0x4E	; 78
+ 1fc:	b0 e0       	ldi	r27, 0x00	; 0
+ 1fe:	ee e4       	ldi	r30, 0x4E	; 78
+ 200:	f0 e0       	ldi	r31, 0x00	; 0
+ 202:	80 81       	ld	r24, Z
+ 204:	98 2f       	mov	r25, r24
+ 206:	98 7f       	andi	r25, 0xF8	; 248
+ 208:	80 91 60 00 	lds	r24, 0x0060
+ 20c:	87 70       	andi	r24, 0x07	; 7
+ 20e:	89 2b       	or	r24, r25
+ 210:	8c 93       	st	X, r24
+ 212:	0c c0       	rjmp	.+24     	; 0x22c <timer1_PWM_init+0xee>
+		}else if((timer1_PWM_config -> timer1_PWM_state) == timer1_PWM_state_disable){
+ 214:	e9 81       	ldd	r30, Y+1	; 0x01
+ 216:	fa 81       	ldd	r31, Y+2	; 0x02
+ 218:	80 81       	ld	r24, Z
+ 21a:	88 23       	and	r24, r24
+ 21c:	39 f4       	brne	.+14     	; 0x22c <timer1_PWM_init+0xee>
+			TCCR1B = (TCCR1B & (0xF8)) | (timer1_no_clock_source & 0x07);
+ 21e:	ae e4       	ldi	r26, 0x4E	; 78
+ 220:	b0 e0       	ldi	r27, 0x00	; 0
+ 222:	ee e4       	ldi	r30, 0x4E	; 78
+ 224:	f0 e0       	ldi	r31, 0x00	; 0
+ 226:	80 81       	ld	r24, Z
+ 228:	88 7f       	andi	r24, 0xF8	; 248
+ 22a:	8c 93       	st	X, r24
+		}
+
+	}
+}
+ 22c:	0f 90       	pop	r0
+ 22e:	0f 90       	pop	r0
+ 230:	cf 91       	pop	r28
+ 232:	df 91       	pop	r29
+ 234:	08 95       	ret
+
+00000236 <timer1_PWMSetCompareValue>:
+
+/*
+ * This function is used to change compare value which changes the duty cycle
+ * */
+void timer1_PWMSetCompareValue(const uint16 timer1_compare_value){
+ 236:	df 93       	push	r29
+ 238:	cf 93       	push	r28
+ 23a:	00 d0       	rcall	.+0      	; 0x23c <timer1_PWMSetCompareValue+0x6>
+ 23c:	cd b7       	in	r28, 0x3d	; 61
+ 23e:	de b7       	in	r29, 0x3e	; 62
+ 240:	9a 83       	std	Y+2, r25	; 0x02
+ 242:	89 83       	std	Y+1, r24	; 0x01
+	OCR1B = timer1_compare_value;
+ 244:	e8 e4       	ldi	r30, 0x48	; 72
+ 246:	f0 e0       	ldi	r31, 0x00	; 0
+ 248:	89 81       	ldd	r24, Y+1	; 0x01
+ 24a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 24c:	91 83       	std	Z+1, r25	; 0x01
+ 24e:	80 83       	st	Z, r24
+}
+ 250:	0f 90       	pop	r0
+ 252:	0f 90       	pop	r0
+ 254:	cf 91       	pop	r28
+ 256:	df 91       	pop	r29
+ 258:	08 95       	ret
+
+0000025a <timer1_PWM_deinit>:
+
+/*
+ * This function deinitializes the timer1 to the reset state to make timer1
+ * available for other uses
+ **/
+void timer1_PWM_deinit(void){
+ 25a:	df 93       	push	r29
+ 25c:	cf 93       	push	r28
+ 25e:	cd b7       	in	r28, 0x3d	; 61
+ 260:	de b7       	in	r29, 0x3e	; 62
+	/*set both TCCR1A and TCCR1B to 0 which is the reset value*/
+	TCCR1A = 0;
+ 262:	ef e4       	ldi	r30, 0x4F	; 79
+ 264:	f0 e0       	ldi	r31, 0x00	; 0
+ 266:	10 82       	st	Z, r1
+	TCCR1B = 0;
+ 268:	ee e4       	ldi	r30, 0x4E	; 78
+ 26a:	f0 e0       	ldi	r31, 0x00	; 0
+ 26c:	10 82       	st	Z, r1
+
+	/*clear both OCR1A and OCR1B*/
+	OCR1A = 0;
+ 26e:	ea e4       	ldi	r30, 0x4A	; 74
+ 270:	f0 e0       	ldi	r31, 0x00	; 0
+ 272:	11 82       	std	Z+1, r1	; 0x01
+ 274:	10 82       	st	Z, r1
+	OCR1B = 0;
+ 276:	e8 e4       	ldi	r30, 0x48	; 72
+ 278:	f0 e0       	ldi	r31, 0x00	; 0
+ 27a:	11 82       	std	Z+1, r1	; 0x01
+ 27c:	10 82       	st	Z, r1
+}
+ 27e:	cf 91       	pop	r28
+ 280:	df 91       	pop	r29
+ 282:	08 95       	ret
+
+00000284 <timer1_PWM_disable>:
+
+/*
+ * disable timer1 clock which stops timer1 and PWM consecutively
+ * */
+void timer1_PWM_disable(void){
+ 284:	df 93       	push	r29
+ 286:	cf 93       	push	r28
+ 288:	cd b7       	in	r28, 0x3d	; 61
+ 28a:	de b7       	in	r29, 0x3e	; 62
+	TCCR1B = (TCCR1B & (0xF8)) | ((timer1_no_clock_source & 0x07));
+ 28c:	ae e4       	ldi	r26, 0x4E	; 78
+ 28e:	b0 e0       	ldi	r27, 0x00	; 0
+ 290:	ee e4       	ldi	r30, 0x4E	; 78
+ 292:	f0 e0       	ldi	r31, 0x00	; 0
+ 294:	80 81       	ld	r24, Z
+ 296:	88 7f       	andi	r24, 0xF8	; 248
+ 298:	8c 93       	st	X, r24
+}
+ 29a:	cf 91       	pop	r28
+ 29c:	df 91       	pop	r29
+ 29e:	08 95       	ret
+
+000002a0 <timer1_PWM_enable>:
+
+/*
+ * re-enable timer1 clock which enables timer1 and PWM consecutively
+ * */
+void timer1_PWM_enable(void){
+ 2a0:	df 93       	push	r29
+ 2a2:	cf 93       	push	r28
+ 2a4:	cd b7       	in	r28, 0x3d	; 61
+ 2a6:	de b7       	in	r29, 0x3e	; 62
+	TCCR1B = (TCCR1B & (0xF8)) | ((PWM_clock_select & 0x07));
+ 2a8:	ae e4       	ldi	r26, 0x4E	; 78
+ 2aa:	b0 e0       	ldi	r27, 0x00	; 0
+ 2ac:	ee e4       	ldi	r30, 0x4E	; 78
+ 2ae:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b0:	80 81       	ld	r24, Z
+ 2b2:	98 2f       	mov	r25, r24
+ 2b4:	98 7f       	andi	r25, 0xF8	; 248
+ 2b6:	80 91 60 00 	lds	r24, 0x0060
+ 2ba:	87 70       	andi	r24, 0x07	; 7
+ 2bc:	89 2b       	or	r24, r25
+ 2be:	8c 93       	st	X, r24
+}
+ 2c0:	cf 91       	pop	r28
+ 2c2:	df 91       	pop	r29
+ 2c4:	08 95       	ret
+
+000002c6 <timer1_ICU_init>:
+/*
+ * This function initialized timer1 to be used as an input capture unit
+ * the trigger edge (falling or rising) and the prescaler are selected based on
+ * the based configurations
+ * */
+void timer1_ICU_init(const timer1_ICU_config_t * timer1_ICU_config){
+ 2c6:	df 93       	push	r29
+ 2c8:	cf 93       	push	r28
+ 2ca:	00 d0       	rcall	.+0      	; 0x2cc <timer1_ICU_init+0x6>
+ 2cc:	cd b7       	in	r28, 0x3d	; 61
+ 2ce:	de b7       	in	r29, 0x3e	; 62
+ 2d0:	9a 83       	std	Y+2, r25	; 0x02
+ 2d2:	89 83       	std	Y+1, r24	; 0x01
+	if(timer1_ICU_config != NULL_PTR){
+ 2d4:	89 81       	ldd	r24, Y+1	; 0x01
+ 2d6:	9a 81       	ldd	r25, Y+2	; 0x02
+ 2d8:	00 97       	sbiw	r24, 0x00	; 0
+ 2da:	09 f4       	brne	.+2      	; 0x2de <timer1_ICU_init+0x18>
+ 2dc:	4d c0       	rjmp	.+154    	; 0x378 <timer1_ICU_init+0xb2>
+		/*configure timer1 to work in overflow mode*/
+		TCCR1A &= ~((1 << WGM10) | (1 << WGM11));
+ 2de:	af e4       	ldi	r26, 0x4F	; 79
+ 2e0:	b0 e0       	ldi	r27, 0x00	; 0
+ 2e2:	ef e4       	ldi	r30, 0x4F	; 79
+ 2e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2e6:	80 81       	ld	r24, Z
+ 2e8:	8c 7f       	andi	r24, 0xFC	; 252
+ 2ea:	8c 93       	st	X, r24
+		TCCR1B &= ~((1 << WGM12) | (1 << WGM13));
+ 2ec:	ae e4       	ldi	r26, 0x4E	; 78
+ 2ee:	b0 e0       	ldi	r27, 0x00	; 0
+ 2f0:	ee e4       	ldi	r30, 0x4E	; 78
+ 2f2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f4:	80 81       	ld	r24, Z
+ 2f6:	87 7e       	andi	r24, 0xE7	; 231
+ 2f8:	8c 93       	st	X, r24
+
+		/*Set the ICES1 (ICU edge select) bit to the configured bit*/
+		TCCR1B = (TCCR1B & ~(1 << ICES1)) |
+ 2fa:	ae e4       	ldi	r26, 0x4E	; 78
+ 2fc:	b0 e0       	ldi	r27, 0x00	; 0
+ 2fe:	ee e4       	ldi	r30, 0x4E	; 78
+ 300:	f0 e0       	ldi	r31, 0x00	; 0
+ 302:	80 81       	ld	r24, Z
+ 304:	28 2f       	mov	r18, r24
+ 306:	2f 7b       	andi	r18, 0xBF	; 191
+ 308:	e9 81       	ldd	r30, Y+1	; 0x01
+ 30a:	fa 81       	ldd	r31, Y+2	; 0x02
+ 30c:	81 81       	ldd	r24, Z+1	; 0x01
+ 30e:	88 2f       	mov	r24, r24
+ 310:	90 e0       	ldi	r25, 0x00	; 0
+ 312:	81 70       	andi	r24, 0x01	; 1
+ 314:	90 70       	andi	r25, 0x00	; 0
+ 316:	00 24       	eor	r0, r0
+ 318:	96 95       	lsr	r25
+ 31a:	87 95       	ror	r24
+ 31c:	07 94       	ror	r0
+ 31e:	96 95       	lsr	r25
+ 320:	87 95       	ror	r24
+ 322:	07 94       	ror	r0
+ 324:	98 2f       	mov	r25, r24
+ 326:	80 2d       	mov	r24, r0
+ 328:	82 2b       	or	r24, r18
+ 32a:	8c 93       	st	X, r24
+					((timer1_ICU_config -> timer1_ICU_edge_select & 0x01) << ICES1);
+
+		/*Set timer1 clock*/
+		ICU_clock_select = timer1_ICU_config -> timer1_clock_select;
+ 32c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 32e:	fa 81       	ldd	r31, Y+2	; 0x02
+ 330:	80 81       	ld	r24, Z
+ 332:	80 93 61 00 	sts	0x0061, r24
+		TCCR1B = (TCCR1B & (0xF8)) | ((ICU_clock_select & 0x07));
+ 336:	ae e4       	ldi	r26, 0x4E	; 78
+ 338:	b0 e0       	ldi	r27, 0x00	; 0
+ 33a:	ee e4       	ldi	r30, 0x4E	; 78
+ 33c:	f0 e0       	ldi	r31, 0x00	; 0
+ 33e:	80 81       	ld	r24, Z
+ 340:	98 2f       	mov	r25, r24
+ 342:	98 7f       	andi	r25, 0xF8	; 248
+ 344:	80 91 61 00 	lds	r24, 0x0061
+ 348:	87 70       	andi	r24, 0x07	; 7
+ 34a:	89 2b       	or	r24, r25
+ 34c:	8c 93       	st	X, r24
+
+		/*these bits are set when operating in any non_PWM mode*/
+		TCCR1A |= (1 << FOC1A) | (1 << FOC1B);
+ 34e:	af e4       	ldi	r26, 0x4F	; 79
+ 350:	b0 e0       	ldi	r27, 0x00	; 0
+ 352:	ef e4       	ldi	r30, 0x4F	; 79
+ 354:	f0 e0       	ldi	r31, 0x00	; 0
+ 356:	80 81       	ld	r24, Z
+ 358:	8c 60       	ori	r24, 0x0C	; 12
+ 35a:	8c 93       	st	X, r24
+
+		/*Clear the interrupt flag*/
+		TIFR |= (1 << ICF1);
+ 35c:	a8 e5       	ldi	r26, 0x58	; 88
+ 35e:	b0 e0       	ldi	r27, 0x00	; 0
+ 360:	e8 e5       	ldi	r30, 0x58	; 88
+ 362:	f0 e0       	ldi	r31, 0x00	; 0
+ 364:	80 81       	ld	r24, Z
+ 366:	80 62       	ori	r24, 0x20	; 32
+ 368:	8c 93       	st	X, r24
+		/*enable ICU interrupt*/
+		TIMSK |= (1 << TICIE1);
+ 36a:	a9 e5       	ldi	r26, 0x59	; 89
+ 36c:	b0 e0       	ldi	r27, 0x00	; 0
+ 36e:	e9 e5       	ldi	r30, 0x59	; 89
+ 370:	f0 e0       	ldi	r31, 0x00	; 0
+ 372:	80 81       	ld	r24, Z
+ 374:	80 62       	ori	r24, 0x20	; 32
+ 376:	8c 93       	st	X, r24
+	}
+}
+ 378:	0f 90       	pop	r0
+ 37a:	0f 90       	pop	r0
+ 37c:	cf 91       	pop	r28
+ 37e:	df 91       	pop	r29
+ 380:	08 95       	ret
+
+00000382 <timer1_ICU_deinit>:
+
+/*
+ * This function deinitializes the timer1 to the reset state to make timer1
+ * available for other uses
+ **/
+void timer1_ICU_deinit(void){
+ 382:	df 93       	push	r29
+ 384:	cf 93       	push	r28
+ 386:	cd b7       	in	r28, 0x3d	; 61
+ 388:	de b7       	in	r29, 0x3e	; 62
+	/*set both TCCR1A and TCCR1B to 0 which is the reset value*/
+	TCCR1A = 0;
+ 38a:	ef e4       	ldi	r30, 0x4F	; 79
+ 38c:	f0 e0       	ldi	r31, 0x00	; 0
+ 38e:	10 82       	st	Z, r1
+	TCCR1B = 0;
+ 390:	ee e4       	ldi	r30, 0x4E	; 78
+ 392:	f0 e0       	ldi	r31, 0x00	; 0
+ 394:	10 82       	st	Z, r1
+
+	/*disable ICU interrupt*/
+	TIMSK &= ~(1 << TICIE1);
+ 396:	a9 e5       	ldi	r26, 0x59	; 89
+ 398:	b0 e0       	ldi	r27, 0x00	; 0
+ 39a:	e9 e5       	ldi	r30, 0x59	; 89
+ 39c:	f0 e0       	ldi	r31, 0x00	; 0
+ 39e:	80 81       	ld	r24, Z
+ 3a0:	8f 7d       	andi	r24, 0xDF	; 223
+ 3a2:	8c 93       	st	X, r24
+}
+ 3a4:	cf 91       	pop	r28
+ 3a6:	df 91       	pop	r29
+ 3a8:	08 95       	ret
+
+000003aa <timer1_ICU_disable>:
+
+/*
+ * This function stops The ICU clock
+ * */
+void timer1_ICU_disable(void){
+ 3aa:	df 93       	push	r29
+ 3ac:	cf 93       	push	r28
+ 3ae:	cd b7       	in	r28, 0x3d	; 61
+ 3b0:	de b7       	in	r29, 0x3e	; 62
+	TIFR &= ~(1 << ICF1);
+ 3b2:	a8 e5       	ldi	r26, 0x58	; 88
+ 3b4:	b0 e0       	ldi	r27, 0x00	; 0
+ 3b6:	e8 e5       	ldi	r30, 0x58	; 88
+ 3b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ba:	80 81       	ld	r24, Z
+ 3bc:	8f 7d       	andi	r24, 0xDF	; 223
+ 3be:	8c 93       	st	X, r24
+}
+ 3c0:	cf 91       	pop	r28
+ 3c2:	df 91       	pop	r29
+ 3c4:	08 95       	ret
+
+000003c6 <timer1_ICU_enable>:
+
+/*
+ * This function starts The ICU clock based on the previously set value
+ * */
+void timer1_ICU_enable(void){
+ 3c6:	df 93       	push	r29
+ 3c8:	cf 93       	push	r28
+ 3ca:	cd b7       	in	r28, 0x3d	; 61
+ 3cc:	de b7       	in	r29, 0x3e	; 62
+	TIFR |= (1 << ICF1);
+ 3ce:	a8 e5       	ldi	r26, 0x58	; 88
+ 3d0:	b0 e0       	ldi	r27, 0x00	; 0
+ 3d2:	e8 e5       	ldi	r30, 0x58	; 88
+ 3d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 3d6:	80 81       	ld	r24, Z
+ 3d8:	80 62       	ori	r24, 0x20	; 32
+ 3da:	8c 93       	st	X, r24
+}
+ 3dc:	cf 91       	pop	r28
+ 3de:	df 91       	pop	r29
+ 3e0:	08 95       	ret
+
+000003e2 <timer1_ICU_getCapturedValue>:
+/*
+ * This function returns the value stored in the 16-bit input capture unit register
+ * */
+uint16 timer1_ICU_getCapturedValue(void){
+ 3e2:	df 93       	push	r29
+ 3e4:	cf 93       	push	r28
+ 3e6:	cd b7       	in	r28, 0x3d	; 61
+ 3e8:	de b7       	in	r29, 0x3e	; 62
+	return ICR1;
+ 3ea:	e6 e4       	ldi	r30, 0x46	; 70
+ 3ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ee:	80 81       	ld	r24, Z
+ 3f0:	91 81       	ldd	r25, Z+1	; 0x01
+}
+ 3f2:	cf 91       	pop	r28
+ 3f4:	df 91       	pop	r29
+ 3f6:	08 95       	ret
+
+000003f8 <timer1_ICU_callbackInit>:
+
+/*
+ * This is function is used to give a value to the call back function to be called
+ * by the ISR of the ICU
+ * */
+void timer1_ICU_callbackInit(void(* ICU_callbackFunction)(void)){
+ 3f8:	df 93       	push	r29
+ 3fa:	cf 93       	push	r28
+ 3fc:	00 d0       	rcall	.+0      	; 0x3fe <timer1_ICU_callbackInit+0x6>
+ 3fe:	cd b7       	in	r28, 0x3d	; 61
+ 400:	de b7       	in	r29, 0x3e	; 62
+ 402:	9a 83       	std	Y+2, r25	; 0x02
+ 404:	89 83       	std	Y+1, r24	; 0x01
+	ICU_callback_local = ICU_callbackFunction;
+ 406:	89 81       	ldd	r24, Y+1	; 0x01
+ 408:	9a 81       	ldd	r25, Y+2	; 0x02
+ 40a:	90 93 63 00 	sts	0x0063, r25
+ 40e:	80 93 62 00 	sts	0x0062, r24
+}
+ 412:	0f 90       	pop	r0
+ 414:	0f 90       	pop	r0
+ 416:	cf 91       	pop	r28
+ 418:	df 91       	pop	r29
+ 41a:	08 95       	ret
+
+0000041c <timer1_ICU_edgeSelect>:
+
+/*
+ * This function is used to change the trigger edge for the ICU in runtime
+ * */
+void timer1_ICU_edgeSelect(const timer1_ICU_edge_select_t timer1_ICU_edge_select){
+ 41c:	df 93       	push	r29
+ 41e:	cf 93       	push	r28
+ 420:	0f 92       	push	r0
+ 422:	cd b7       	in	r28, 0x3d	; 61
+ 424:	de b7       	in	r29, 0x3e	; 62
+ 426:	89 83       	std	Y+1, r24	; 0x01
+	/*Set the ICES1 (ICU edge select) bit to the selected bit*/
+			TCCR1B = (TCCR1B & ~(1 << ICES1)) |
+ 428:	ae e4       	ldi	r26, 0x4E	; 78
+ 42a:	b0 e0       	ldi	r27, 0x00	; 0
+ 42c:	ee e4       	ldi	r30, 0x4E	; 78
+ 42e:	f0 e0       	ldi	r31, 0x00	; 0
+ 430:	80 81       	ld	r24, Z
+ 432:	28 2f       	mov	r18, r24
+ 434:	2f 7b       	andi	r18, 0xBF	; 191
+ 436:	89 81       	ldd	r24, Y+1	; 0x01
+ 438:	88 2f       	mov	r24, r24
+ 43a:	90 e0       	ldi	r25, 0x00	; 0
+ 43c:	81 70       	andi	r24, 0x01	; 1
+ 43e:	90 70       	andi	r25, 0x00	; 0
+ 440:	00 24       	eor	r0, r0
+ 442:	96 95       	lsr	r25
+ 444:	87 95       	ror	r24
+ 446:	07 94       	ror	r0
+ 448:	96 95       	lsr	r25
+ 44a:	87 95       	ror	r24
+ 44c:	07 94       	ror	r0
+ 44e:	98 2f       	mov	r25, r24
+ 450:	80 2d       	mov	r24, r0
+ 452:	82 2b       	or	r24, r18
+ 454:	8c 93       	st	X, r24
+						((timer1_ICU_edge_select & 0x01) << ICES1);
+}
+ 456:	0f 90       	pop	r0
+ 458:	cf 91       	pop	r28
+ 45a:	df 91       	pop	r29
+ 45c:	08 95       	ret
+
+0000045e <__vector_10>:
+
+ISR(TIMER0_COMP_vect){
+ 45e:	1f 92       	push	r1
+ 460:	0f 92       	push	r0
+ 462:	0f b6       	in	r0, 0x3f	; 63
+ 464:	0f 92       	push	r0
+ 466:	11 24       	eor	r1, r1
+ 468:	2f 93       	push	r18
+ 46a:	3f 93       	push	r19
+ 46c:	4f 93       	push	r20
+ 46e:	5f 93       	push	r21
+ 470:	6f 93       	push	r22
+ 472:	7f 93       	push	r23
+ 474:	8f 93       	push	r24
+ 476:	9f 93       	push	r25
+ 478:	af 93       	push	r26
+ 47a:	bf 93       	push	r27
+ 47c:	ef 93       	push	r30
+ 47e:	ff 93       	push	r31
+ 480:	df 93       	push	r29
+ 482:	cf 93       	push	r28
+ 484:	cd b7       	in	r28, 0x3d	; 61
+ 486:	de b7       	in	r29, 0x3e	; 62
+	/*check if the user gave a value to the callback function*/
+	if(timer0_callback_local != NULL_PTR){
+ 488:	80 91 64 00 	lds	r24, 0x0064
+ 48c:	90 91 65 00 	lds	r25, 0x0065
+ 490:	00 97       	sbiw	r24, 0x00	; 0
+ 492:	29 f0       	breq	.+10     	; 0x49e <__vector_10+0x40>
+		/*call the callback function on interrupt if it has a value*/
+		(*timer0_callback_local)();
+ 494:	e0 91 64 00 	lds	r30, 0x0064
+ 498:	f0 91 65 00 	lds	r31, 0x0065
+ 49c:	09 95       	icall
+	}
+}
+ 49e:	cf 91       	pop	r28
+ 4a0:	df 91       	pop	r29
+ 4a2:	ff 91       	pop	r31
+ 4a4:	ef 91       	pop	r30
+ 4a6:	bf 91       	pop	r27
+ 4a8:	af 91       	pop	r26
+ 4aa:	9f 91       	pop	r25
+ 4ac:	8f 91       	pop	r24
+ 4ae:	7f 91       	pop	r23
+ 4b0:	6f 91       	pop	r22
+ 4b2:	5f 91       	pop	r21
+ 4b4:	4f 91       	pop	r20
+ 4b6:	3f 91       	pop	r19
+ 4b8:	2f 91       	pop	r18
+ 4ba:	0f 90       	pop	r0
+ 4bc:	0f be       	out	0x3f, r0	; 63
+ 4be:	0f 90       	pop	r0
+ 4c0:	1f 90       	pop	r1
+ 4c2:	18 95       	reti
+
+000004c4 <__vector_6>:
+
+ISR(TIMER1_CAPT_vect){
+ 4c4:	1f 92       	push	r1
+ 4c6:	0f 92       	push	r0
+ 4c8:	0f b6       	in	r0, 0x3f	; 63
+ 4ca:	0f 92       	push	r0
+ 4cc:	11 24       	eor	r1, r1
+ 4ce:	2f 93       	push	r18
+ 4d0:	3f 93       	push	r19
+ 4d2:	4f 93       	push	r20
+ 4d4:	5f 93       	push	r21
+ 4d6:	6f 93       	push	r22
+ 4d8:	7f 93       	push	r23
+ 4da:	8f 93       	push	r24
+ 4dc:	9f 93       	push	r25
+ 4de:	af 93       	push	r26
+ 4e0:	bf 93       	push	r27
+ 4e2:	ef 93       	push	r30
+ 4e4:	ff 93       	push	r31
+ 4e6:	df 93       	push	r29
+ 4e8:	cf 93       	push	r28
+ 4ea:	cd b7       	in	r28, 0x3d	; 61
+ 4ec:	de b7       	in	r29, 0x3e	; 62
+	/*check if the user gave a value to the callback function*/
+	if(ICU_callback_local != NULL_PTR){
+ 4ee:	80 91 62 00 	lds	r24, 0x0062
+ 4f2:	90 91 63 00 	lds	r25, 0x0063
+ 4f6:	00 97       	sbiw	r24, 0x00	; 0
+ 4f8:	29 f0       	breq	.+10     	; 0x504 <__vector_6+0x40>
+		/*call the callback function on interrupt if it has a value*/
+		(*ICU_callback_local)();
+ 4fa:	e0 91 62 00 	lds	r30, 0x0062
+ 4fe:	f0 91 63 00 	lds	r31, 0x0063
+ 502:	09 95       	icall
+	}
+}
+ 504:	cf 91       	pop	r28
+ 506:	df 91       	pop	r29
+ 508:	ff 91       	pop	r31
+ 50a:	ef 91       	pop	r30
+ 50c:	bf 91       	pop	r27
+ 50e:	af 91       	pop	r26
+ 510:	9f 91       	pop	r25
+ 512:	8f 91       	pop	r24
+ 514:	7f 91       	pop	r23
+ 516:	6f 91       	pop	r22
+ 518:	5f 91       	pop	r21
+ 51a:	4f 91       	pop	r20
+ 51c:	3f 91       	pop	r19
+ 51e:	2f 91       	pop	r18
+ 520:	0f 90       	pop	r0
+ 522:	0f be       	out	0x3f, r0	; 63
+ 524:	0f 90       	pop	r0
+ 526:	1f 90       	pop	r1
+ 528:	18 95       	reti
+
+0000052a <adc_init>:
+
+#if ADC_READ_MODE == ADC_READ_MODE_INTERRUPT
+void(* volatile adc_callback_local)(void);
+#endif
+
+void adc_init(const adc_config_t * adc_config){
+ 52a:	df 93       	push	r29
+ 52c:	cf 93       	push	r28
+ 52e:	00 d0       	rcall	.+0      	; 0x530 <adc_init+0x6>
+ 530:	cd b7       	in	r28, 0x3d	; 61
+ 532:	de b7       	in	r29, 0x3e	; 62
+ 534:	9a 83       	std	Y+2, r25	; 0x02
+ 536:	89 83       	std	Y+1, r24	; 0x01
+	/*set the selected ADC reference*/
+	ADMUX = (ADMUX & ~(0xC0)) | ((adc_config -> adc_reference) << 6);
+ 538:	a7 e2       	ldi	r26, 0x27	; 39
+ 53a:	b0 e0       	ldi	r27, 0x00	; 0
+ 53c:	e7 e2       	ldi	r30, 0x27	; 39
+ 53e:	f0 e0       	ldi	r31, 0x00	; 0
+ 540:	80 81       	ld	r24, Z
+ 542:	28 2f       	mov	r18, r24
+ 544:	2f 73       	andi	r18, 0x3F	; 63
+ 546:	e9 81       	ldd	r30, Y+1	; 0x01
+ 548:	fa 81       	ldd	r31, Y+2	; 0x02
+ 54a:	80 81       	ld	r24, Z
+ 54c:	88 2f       	mov	r24, r24
+ 54e:	90 e0       	ldi	r25, 0x00	; 0
+ 550:	00 24       	eor	r0, r0
+ 552:	96 95       	lsr	r25
+ 554:	87 95       	ror	r24
+ 556:	07 94       	ror	r0
+ 558:	96 95       	lsr	r25
+ 55a:	87 95       	ror	r24
+ 55c:	07 94       	ror	r0
+ 55e:	98 2f       	mov	r25, r24
+ 560:	80 2d       	mov	r24, r0
+ 562:	82 2b       	or	r24, r18
+ 564:	8c 93       	st	X, r24
+
+	/*select right adjust of ADC result*/
+	ADMUX &= ~(1 << ADLAR);
+ 566:	a7 e2       	ldi	r26, 0x27	; 39
+ 568:	b0 e0       	ldi	r27, 0x00	; 0
+ 56a:	e7 e2       	ldi	r30, 0x27	; 39
+ 56c:	f0 e0       	ldi	r31, 0x00	; 0
+ 56e:	80 81       	ld	r24, Z
+ 570:	8f 7d       	andi	r24, 0xDF	; 223
+ 572:	8c 93       	st	X, r24
+
+	/*set the initial channel to the selected one*/
+	ADMUX = (ADMUX & ~(ADC_CHANNELS_MASK)) | (adc_config -> adc_default_channel & 0X1F);
+ 574:	a7 e2       	ldi	r26, 0x27	; 39
+ 576:	b0 e0       	ldi	r27, 0x00	; 0
+ 578:	e7 e2       	ldi	r30, 0x27	; 39
+ 57a:	f0 e0       	ldi	r31, 0x00	; 0
+ 57c:	80 81       	ld	r24, Z
+ 57e:	98 2f       	mov	r25, r24
+ 580:	90 7e       	andi	r25, 0xE0	; 224
+ 582:	e9 81       	ldd	r30, Y+1	; 0x01
+ 584:	fa 81       	ldd	r31, Y+2	; 0x02
+ 586:	82 81       	ldd	r24, Z+2	; 0x02
+ 588:	8f 71       	andi	r24, 0x1F	; 31
+ 58a:	89 2b       	or	r24, r25
+ 58c:	8c 93       	st	X, r24
+
+	/*clear the interrupt flag before enabling interrupt*/
+	ADCSRA |= (1 << ADIF);
+ 58e:	a6 e2       	ldi	r26, 0x26	; 38
+ 590:	b0 e0       	ldi	r27, 0x00	; 0
+ 592:	e6 e2       	ldi	r30, 0x26	; 38
+ 594:	f0 e0       	ldi	r31, 0x00	; 0
+ 596:	80 81       	ld	r24, Z
+ 598:	80 61       	ori	r24, 0x10	; 16
+ 59a:	8c 93       	st	X, r24
+
+	/*enable interrupt or disable it based on the configuration*/
+	if(adc_config -> adc_interrupt_state == adc_interrupt_enable){
+ 59c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 59e:	fa 81       	ldd	r31, Y+2	; 0x02
+ 5a0:	84 81       	ldd	r24, Z+4	; 0x04
+ 5a2:	81 30       	cpi	r24, 0x01	; 1
+ 5a4:	41 f4       	brne	.+16     	; 0x5b6 <adc_init+0x8c>
+		ADCSRA |= (1 << ADIE);
+ 5a6:	a6 e2       	ldi	r26, 0x26	; 38
+ 5a8:	b0 e0       	ldi	r27, 0x00	; 0
+ 5aa:	e6 e2       	ldi	r30, 0x26	; 38
+ 5ac:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ae:	80 81       	ld	r24, Z
+ 5b0:	88 60       	ori	r24, 0x08	; 8
+ 5b2:	8c 93       	st	X, r24
+ 5b4:	07 c0       	rjmp	.+14     	; 0x5c4 <adc_init+0x9a>
+	}else{
+		ADCSRA &= ~(1 << ADIE);
+ 5b6:	a6 e2       	ldi	r26, 0x26	; 38
+ 5b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 5ba:	e6 e2       	ldi	r30, 0x26	; 38
+ 5bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5be:	80 81       	ld	r24, Z
+ 5c0:	87 7f       	andi	r24, 0xF7	; 247
+ 5c2:	8c 93       	st	X, r24
+	}
+
+	/*select the ADC auto trigger mode*/
+	SFIOR = (SFIOR & ~(0xE0)) | (((adc_config->adc_auto_trigger_select) << 5) & 0xE0);
+ 5c4:	a0 e5       	ldi	r26, 0x50	; 80
+ 5c6:	b0 e0       	ldi	r27, 0x00	; 0
+ 5c8:	e0 e5       	ldi	r30, 0x50	; 80
+ 5ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 5cc:	80 81       	ld	r24, Z
+ 5ce:	28 2f       	mov	r18, r24
+ 5d0:	2f 71       	andi	r18, 0x1F	; 31
+ 5d2:	e9 81       	ldd	r30, Y+1	; 0x01
+ 5d4:	fa 81       	ldd	r31, Y+2	; 0x02
+ 5d6:	83 81       	ldd	r24, Z+3	; 0x03
+ 5d8:	88 2f       	mov	r24, r24
+ 5da:	90 e0       	ldi	r25, 0x00	; 0
+ 5dc:	88 0f       	add	r24, r24
+ 5de:	99 1f       	adc	r25, r25
+ 5e0:	82 95       	swap	r24
+ 5e2:	92 95       	swap	r25
+ 5e4:	90 7f       	andi	r25, 0xF0	; 240
+ 5e6:	98 27       	eor	r25, r24
+ 5e8:	80 7f       	andi	r24, 0xF0	; 240
+ 5ea:	98 27       	eor	r25, r24
+ 5ec:	82 2b       	or	r24, r18
+ 5ee:	8c 93       	st	X, r24
+
+	/*if an auto trigger mode is selected set this bit to enable auto trigger*/
+	if(((adc_config->adc_auto_trigger_select) >= 1)&&((adc_config->adc_auto_trigger_select) <= 7)){
+ 5f0:	e9 81       	ldd	r30, Y+1	; 0x01
+ 5f2:	fa 81       	ldd	r31, Y+2	; 0x02
+ 5f4:	83 81       	ldd	r24, Z+3	; 0x03
+ 5f6:	88 23       	and	r24, r24
+ 5f8:	61 f0       	breq	.+24     	; 0x612 <adc_init+0xe8>
+ 5fa:	e9 81       	ldd	r30, Y+1	; 0x01
+ 5fc:	fa 81       	ldd	r31, Y+2	; 0x02
+ 5fe:	83 81       	ldd	r24, Z+3	; 0x03
+ 600:	88 30       	cpi	r24, 0x08	; 8
+ 602:	38 f4       	brcc	.+14     	; 0x612 <adc_init+0xe8>
+		ADCSRA |= (1 << ADATE);
+ 604:	a6 e2       	ldi	r26, 0x26	; 38
+ 606:	b0 e0       	ldi	r27, 0x00	; 0
+ 608:	e6 e2       	ldi	r30, 0x26	; 38
+ 60a:	f0 e0       	ldi	r31, 0x00	; 0
+ 60c:	80 81       	ld	r24, Z
+ 60e:	80 62       	ori	r24, 0x20	; 32
+ 610:	8c 93       	st	X, r24
+	}
+
+	/*set the selected prescaler*/
+	ADCSRA = (ADCSRA & ~(0X07)) | (adc_config -> adc_prescaler & 0X07);
+ 612:	a6 e2       	ldi	r26, 0x26	; 38
+ 614:	b0 e0       	ldi	r27, 0x00	; 0
+ 616:	e6 e2       	ldi	r30, 0x26	; 38
+ 618:	f0 e0       	ldi	r31, 0x00	; 0
+ 61a:	80 81       	ld	r24, Z
+ 61c:	98 2f       	mov	r25, r24
+ 61e:	98 7f       	andi	r25, 0xF8	; 248
+ 620:	e9 81       	ldd	r30, Y+1	; 0x01
+ 622:	fa 81       	ldd	r31, Y+2	; 0x02
+ 624:	81 81       	ldd	r24, Z+1	; 0x01
+ 626:	87 70       	andi	r24, 0x07	; 7
+ 628:	89 2b       	or	r24, r25
+ 62a:	8c 93       	st	X, r24
+	ADCSRA |= (1 << ADEN);
+ 62c:	a6 e2       	ldi	r26, 0x26	; 38
+ 62e:	b0 e0       	ldi	r27, 0x00	; 0
+ 630:	e6 e2       	ldi	r30, 0x26	; 38
+ 632:	f0 e0       	ldi	r31, 0x00	; 0
+ 634:	80 81       	ld	r24, Z
+ 636:	80 68       	ori	r24, 0x80	; 128
+ 638:	8c 93       	st	X, r24
+}
+ 63a:	0f 90       	pop	r0
+ 63c:	0f 90       	pop	r0
+ 63e:	cf 91       	pop	r28
+ 640:	df 91       	pop	r29
+ 642:	08 95       	ret
+
+00000644 <adc_readChannel>:
+
+#if ADC_READ_MODE == ADC_READ_MODE_INTERRUPT
+void adc_readChannel(adc_channel_t channel){
+ 644:	df 93       	push	r29
+ 646:	cf 93       	push	r28
+ 648:	0f 92       	push	r0
+ 64a:	cd b7       	in	r28, 0x3d	; 61
+ 64c:	de b7       	in	r29, 0x3e	; 62
+ 64e:	89 83       	std	Y+1, r24	; 0x01
+	ADMUX = (ADMUX & ~(ADC_CHANNELS_MASK)) | (channel & 0X1F);
+ 650:	a7 e2       	ldi	r26, 0x27	; 39
+ 652:	b0 e0       	ldi	r27, 0x00	; 0
+ 654:	e7 e2       	ldi	r30, 0x27	; 39
+ 656:	f0 e0       	ldi	r31, 0x00	; 0
+ 658:	80 81       	ld	r24, Z
+ 65a:	98 2f       	mov	r25, r24
+ 65c:	90 7e       	andi	r25, 0xE0	; 224
+ 65e:	89 81       	ldd	r24, Y+1	; 0x01
+ 660:	8f 71       	andi	r24, 0x1F	; 31
+ 662:	89 2b       	or	r24, r25
+ 664:	8c 93       	st	X, r24
+	ADCSRA |= (1<<ADSC);
+ 666:	a6 e2       	ldi	r26, 0x26	; 38
+ 668:	b0 e0       	ldi	r27, 0x00	; 0
+ 66a:	e6 e2       	ldi	r30, 0x26	; 38
+ 66c:	f0 e0       	ldi	r31, 0x00	; 0
+ 66e:	80 81       	ld	r24, Z
+ 670:	80 64       	ori	r24, 0x40	; 64
+ 672:	8c 93       	st	X, r24
+}
+ 674:	0f 90       	pop	r0
+ 676:	cf 91       	pop	r28
+ 678:	df 91       	pop	r29
+ 67a:	08 95       	ret
+
+0000067c <adc_callbackInit>:
+}
+#endif
+
+#if ADC_READ_MODE == ADC_READ_MODE_INTERRUPT
+/*This function is used to initiate the callback function for the ADC interrupt*/
+void adc_callbackInit(void(* const callback_ptr)(void)){
+ 67c:	df 93       	push	r29
+ 67e:	cf 93       	push	r28
+ 680:	00 d0       	rcall	.+0      	; 0x682 <adc_callbackInit+0x6>
+ 682:	cd b7       	in	r28, 0x3d	; 61
+ 684:	de b7       	in	r29, 0x3e	; 62
+ 686:	9a 83       	std	Y+2, r25	; 0x02
+ 688:	89 83       	std	Y+1, r24	; 0x01
+	adc_callback_local = callback_ptr;
+ 68a:	89 81       	ldd	r24, Y+1	; 0x01
+ 68c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 68e:	90 93 68 00 	sts	0x0068, r25
+ 692:	80 93 67 00 	sts	0x0067, r24
+}
+ 696:	0f 90       	pop	r0
+ 698:	0f 90       	pop	r0
+ 69a:	cf 91       	pop	r28
+ 69c:	df 91       	pop	r29
+ 69e:	08 95       	ret
+
+000006a0 <__vector_16>:
+ISR(ADC_vect){
+ 6a0:	1f 92       	push	r1
+ 6a2:	0f 92       	push	r0
+ 6a4:	0f b6       	in	r0, 0x3f	; 63
+ 6a6:	0f 92       	push	r0
+ 6a8:	11 24       	eor	r1, r1
+ 6aa:	2f 93       	push	r18
+ 6ac:	3f 93       	push	r19
+ 6ae:	4f 93       	push	r20
+ 6b0:	5f 93       	push	r21
+ 6b2:	6f 93       	push	r22
+ 6b4:	7f 93       	push	r23
+ 6b6:	8f 93       	push	r24
+ 6b8:	9f 93       	push	r25
+ 6ba:	af 93       	push	r26
+ 6bc:	bf 93       	push	r27
+ 6be:	ef 93       	push	r30
+ 6c0:	ff 93       	push	r31
+ 6c2:	df 93       	push	r29
+ 6c4:	cf 93       	push	r28
+ 6c6:	cd b7       	in	r28, 0x3d	; 61
+ 6c8:	de b7       	in	r29, 0x3e	; 62
+	if(adc_callback_local != NULL_PTR){
+ 6ca:	80 91 67 00 	lds	r24, 0x0067
+ 6ce:	90 91 68 00 	lds	r25, 0x0068
+ 6d2:	00 97       	sbiw	r24, 0x00	; 0
+ 6d4:	29 f0       	breq	.+10     	; 0x6e0 <__vector_16+0x40>
+		adc_callback_local();
+ 6d6:	e0 91 67 00 	lds	r30, 0x0067
+ 6da:	f0 91 68 00 	lds	r31, 0x0068
+ 6de:	09 95       	icall
+	}
+}
+ 6e0:	cf 91       	pop	r28
+ 6e2:	df 91       	pop	r29
+ 6e4:	ff 91       	pop	r31
+ 6e6:	ef 91       	pop	r30
+ 6e8:	bf 91       	pop	r27
+ 6ea:	af 91       	pop	r26
+ 6ec:	9f 91       	pop	r25
+ 6ee:	8f 91       	pop	r24
+ 6f0:	7f 91       	pop	r23
+ 6f2:	6f 91       	pop	r22
+ 6f4:	5f 91       	pop	r21
+ 6f6:	4f 91       	pop	r20
+ 6f8:	3f 91       	pop	r19
+ 6fa:	2f 91       	pop	r18
+ 6fc:	0f 90       	pop	r0
+ 6fe:	0f be       	out	0x3f, r0	; 63
+ 700:	0f 90       	pop	r0
+ 702:	1f 90       	pop	r1
+ 704:	18 95       	reti
+
+00000706 <main>:
+void timer0_callback(void);
+
+volatile uint16 adc_result;
+volatile uint8 adc_first_reading_flag = 0;
+
+int main(){
+ 706:	df 93       	push	r29
+ 708:	cf 93       	push	r28
+ 70a:	cd b7       	in	r28, 0x3d	; 61
+ 70c:	de b7       	in	r29, 0x3e	; 62
+ 70e:	2f 97       	sbiw	r28, 0x0f	; 15
+ 710:	0f b6       	in	r0, 0x3f	; 63
+ 712:	f8 94       	cli
+ 714:	de bf       	out	0x3e, r29	; 62
+ 716:	0f be       	out	0x3f, r0	; 63
+ 718:	cd bf       	out	0x3d, r28	; 61
+
+	/*Enable interrupts*/
+	SREG |= 1 << 7;
+ 71a:	af e5       	ldi	r26, 0x5F	; 95
+ 71c:	b0 e0       	ldi	r27, 0x00	; 0
+ 71e:	ef e5       	ldi	r30, 0x5F	; 95
+ 720:	f0 e0       	ldi	r31, 0x00	; 0
+ 722:	80 81       	ld	r24, Z
+ 724:	80 68       	ori	r24, 0x80	; 128
+ 726:	8c 93       	st	X, r24
+
+	timer1_PWM_config_t timer1_PWM_config;
+	/*for a CPU clock source of 1MHz and a PWM frequency of 100Hz
+	 * following the equation from the data sheet (fPWM = fCPU/(Prescaler*(1+TOP)))
+	 * the TOP must be 999 */
+	timer1_PWM_config.timer1_PWM_TOP = 9999;
+ 728:	8f e0       	ldi	r24, 0x0F	; 15
+ 72a:	97 e2       	ldi	r25, 0x27	; 39
+ 72c:	9f 83       	std	Y+7, r25	; 0x07
+ 72e:	8e 83       	std	Y+6, r24	; 0x06
+	 * to the duty cycle in percentage multiplied by 10
+	 * for example: for a duty cycle of 25% the compare value must be 2500
+	 * this value is just an initial value which will be overwritten later when an ADC
+	 * value is read
+	 * */
+	timer1_PWM_config.timer1_PWM_compare_value = 2500;
+ 730:	84 ec       	ldi	r24, 0xC4	; 196
+ 732:	99 e0       	ldi	r25, 0x09	; 9
+ 734:	9d 83       	std	Y+5, r25	; 0x05
+ 736:	8c 83       	std	Y+4, r24	; 0x04
+
+	/*for non-invertning mode (normal mode)*/
+	timer1_PWM_config.timer1_PWM_inversion_select = timer1_PWM_non_inverting;
+ 738:	82 e0       	ldi	r24, 0x02	; 2
+ 73a:	8a 83       	std	Y+2, r24	; 0x02
+
+	/*selecting a prescaler of 1*/
+	timer1_PWM_config.timer1_clock_select = timer1_no_prescaler;
+ 73c:	81 e0       	ldi	r24, 0x01	; 1
+ 73e:	8b 83       	std	Y+3, r24	; 0x03
+
+	/*disable PWM until an ADC reading is done*/
+	timer1_PWM_config.timer1_PWM_state = timer1_PWM_state_disable;
+ 740:	19 82       	std	Y+1, r1	; 0x01
+
+	/*initiate timer1 PWM based on configurations*/
+	timer1_PWM_init(&timer1_PWM_config);
+ 742:	ce 01       	movw	r24, r28
+ 744:	01 96       	adiw	r24, 0x01	; 1
+ 746:	0e 94 9f 00 	call	0x13e	; 0x13e <timer1_PWM_init>
+
+	adc_config_t adc_config;
+
+	/*using the VCC as the reference voltage*/
+	adc_config.adc_reference = adc_reference_AVCC;
+ 74a:	81 e0       	ldi	r24, 0x01	; 1
+ 74c:	88 87       	std	Y+8, r24	; 0x08
+
+	/*the frequency of the ADC circuit must not exceed 200kHz*/
+	adc_config.adc_prescaler = adc_prescaler_16;
+ 74e:	84 e0       	ldi	r24, 0x04	; 4
+ 750:	89 87       	std	Y+9, r24	; 0x09
+
+	/*Set a default channel -> will be the used channel
+	 * if ADC is running in a non-free-running mode*/
+	adc_config.adc_default_channel = adc_channel_0;
+ 752:	1a 86       	std	Y+10, r1	; 0x0a
+
+	/*ADC is used in interrupt mode*/
+	adc_config.adc_interrupt_state = adc_interrupt_enable;
+ 754:	81 e0       	ldi	r24, 0x01	; 1
+ 756:	8c 87       	std	Y+12, r24	; 0x0c
+
+	/*initiate ADC to run in free mode. conversion will start on every timer0 ISR call*/
+	adc_config.adc_auto_trigger_select = adc_auto_trigger_free_running;
+ 758:	1b 86       	std	Y+11, r1	; 0x0b
+
+	/*Initiate ADC on interrupt callback*/
+	adc_callbackInit(adc_callback);
+ 75a:	84 ec       	ldi	r24, 0xC4	; 196
+ 75c:	93 e0       	ldi	r25, 0x03	; 3
+ 75e:	0e 94 3e 03 	call	0x67c	; 0x67c <adc_callbackInit>
+
+	/*initiate ADC based on configurations*/
+	adc_init(&adc_config);
+ 762:	ce 01       	movw	r24, r28
+ 764:	08 96       	adiw	r24, 0x08	; 8
+ 766:	0e 94 95 02 	call	0x52a	; 0x52a <adc_init>
+	timer0_CTC_config_t timer0_config;
+
+	/*for a cpu frequency of 1MHz setting timer0 prescaler to 64 will make it's period 0.064 ms
+	 * then for a periodic ADC start every 5ms the timer0 compare value has to be
+	 * 5/0.064 ~ 78;*/
+	timer0_config.timer0_clock_select = timer0_prescaler_256;
+ 76a:	84 e0       	ldi	r24, 0x04	; 4
+ 76c:	8d 87       	std	Y+13, r24	; 0x0d
+	timer0_config.timer0_compare_value = 200;
+ 76e:	88 ec       	ldi	r24, 0xC8	; 200
+ 770:	8e 87       	std	Y+14, r24	; 0x0e
+
+	/*timer0 interrupt is enabled to start an ADC conversion on every timer0 ISR*/
+	timer0_config.timer0_interrupt_state = timer0_interrupt_enable;
+ 772:	81 e0       	ldi	r24, 0x01	; 1
+ 774:	8f 87       	std	Y+15, r24	; 0x0f
+
+	/*set the call back function for timer0*/
+	timer0_callbackInit(timer0_callback);
+ 776:	8c ee       	ldi	r24, 0xEC	; 236
+ 778:	93 e0       	ldi	r25, 0x03	; 3
+ 77a:	0e 94 8d 00 	call	0x11a	; 0x11a <timer0_callbackInit>
+
+	timer0_compare_mode_init(&timer0_config);
+ 77e:	ce 01       	movw	r24, r28
+ 780:	0d 96       	adiw	r24, 0x0d	; 13
+ 782:	0e 94 3e 00 	call	0x7c	; 0x7c <timer0_compare_mode_init>
+ 786:	ff cf       	rjmp	.-2      	; 0x786 <main+0x80>
+
+00000788 <adc_callback>:
+	while(1){
+
+	}
+}
+
+void adc_callback(void){
+ 788:	df 93       	push	r29
+ 78a:	cf 93       	push	r28
+ 78c:	cd b7       	in	r28, 0x3d	; 61
+ 78e:	de b7       	in	r29, 0x3e	; 62
+	adc_result = ADC;
+ 790:	e4 e2       	ldi	r30, 0x24	; 36
+ 792:	f0 e0       	ldi	r31, 0x00	; 0
+ 794:	80 81       	ld	r24, Z
+ 796:	91 81       	ldd	r25, Z+1	; 0x01
+ 798:	90 93 6a 00 	sts	0x006A, r25
+ 79c:	80 93 69 00 	sts	0x0069, r24
+	timer1_PWMSetCompareValue(adc_result*10);
+ 7a0:	80 91 69 00 	lds	r24, 0x0069
+ 7a4:	90 91 6a 00 	lds	r25, 0x006A
+ 7a8:	9c 01       	movw	r18, r24
+ 7aa:	22 0f       	add	r18, r18
+ 7ac:	33 1f       	adc	r19, r19
+ 7ae:	c9 01       	movw	r24, r18
+ 7b0:	88 0f       	add	r24, r24
+ 7b2:	99 1f       	adc	r25, r25
+ 7b4:	88 0f       	add	r24, r24
+ 7b6:	99 1f       	adc	r25, r25
+ 7b8:	82 0f       	add	r24, r18
+ 7ba:	93 1f       	adc	r25, r19
+ 7bc:	0e 94 1b 01 	call	0x236	; 0x236 <timer1_PWMSetCompareValue>
+	if(adc_first_reading_flag == 0){
+ 7c0:	80 91 66 00 	lds	r24, 0x0066
+ 7c4:	88 23       	and	r24, r24
+ 7c6:	29 f4       	brne	.+10     	; 0x7d2 <adc_callback+0x4a>
+		adc_first_reading_flag = 1;
+ 7c8:	81 e0       	ldi	r24, 0x01	; 1
+ 7ca:	80 93 66 00 	sts	0x0066, r24
+		timer1_PWM_enable();
+ 7ce:	0e 94 50 01 	call	0x2a0	; 0x2a0 <timer1_PWM_enable>
+	}
+}
+ 7d2:	cf 91       	pop	r28
+ 7d4:	df 91       	pop	r29
+ 7d6:	08 95       	ret
+
+000007d8 <timer0_callback>:
+
+void timer0_callback(void){
+ 7d8:	df 93       	push	r29
+ 7da:	cf 93       	push	r28
+ 7dc:	cd b7       	in	r28, 0x3d	; 61
+ 7de:	de b7       	in	r29, 0x3e	; 62
+	adc_readChannel(adc_channel_0);
+ 7e0:	80 e0       	ldi	r24, 0x00	; 0
+ 7e2:	0e 94 22 03 	call	0x644	; 0x644 <adc_readChannel>
+}
+ 7e6:	cf 91       	pop	r28
+ 7e8:	df 91       	pop	r29
+ 7ea:	08 95       	ret
+
+000007ec <_exit>:
+ 7ec:	f8 94       	cli
+
+000007ee <__stop_program>:
+ 7ee:	ff cf       	rjmp	.-2      	; 0x7ee <__stop_program>

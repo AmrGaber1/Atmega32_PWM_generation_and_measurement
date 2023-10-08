@@ -1,0 +1,474 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                              ./MCAL/timers/timers.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+adc_result          0x2               ./app.o
+adc_callback_local  0x2               ./MCAL/adc/adc.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./MCAL/timers/timers.o
+LOAD ./MCAL/adc/adc.o
+LOAD ./app.o
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0x7f0
+ *(.vectors)
+ .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000060                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000070        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x00000078        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000078                __vector_1
+                0x00000078                __vector_12
+                0x00000078                __bad_interrupt
+                0x00000078                __vector_3
+                0x00000078                __vector_11
+                0x00000078                __vector_13
+                0x00000078                __vector_17
+                0x00000078                __vector_19
+                0x00000078                __vector_7
+                0x00000078                __vector_5
+                0x00000078                __vector_4
+                0x00000078                __vector_9
+                0x00000078                __vector_2
+                0x00000078                __vector_15
+                0x00000078                __vector_8
+                0x00000078                __vector_14
+                0x00000078                __vector_18
+                0x00000078                __vector_20
+ .text          0x0000007c        0x0 ./MCAL/timers/timers.o
+ .text          0x0000007c        0x0 ./MCAL/adc/adc.o
+ .text          0x0000007c        0x0 ./app.o
+ .text          0x0000007c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x0000007c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x0000007c                . = ALIGN (0x2)
+ *(.text.*)
+ .text.timer0_compare_mode_init
+                0x0000007c       0x9e ./MCAL/timers/timers.o
+                0x0000007c                timer0_compare_mode_init
+ .text.timer0_callbackInit
+                0x0000011a       0x24 ./MCAL/timers/timers.o
+                0x0000011a                timer0_callbackInit
+ .text.timer1_PWM_init
+                0x0000013e       0xf8 ./MCAL/timers/timers.o
+                0x0000013e                timer1_PWM_init
+ .text.timer1_PWMSetCompareValue
+                0x00000236       0x24 ./MCAL/timers/timers.o
+                0x00000236                timer1_PWMSetCompareValue
+ .text.timer1_PWM_deinit
+                0x0000025a       0x2a ./MCAL/timers/timers.o
+                0x0000025a                timer1_PWM_deinit
+ .text.timer1_PWM_disable
+                0x00000284       0x1c ./MCAL/timers/timers.o
+                0x00000284                timer1_PWM_disable
+ .text.timer1_PWM_enable
+                0x000002a0       0x26 ./MCAL/timers/timers.o
+                0x000002a0                timer1_PWM_enable
+ .text.timer1_ICU_init
+                0x000002c6       0xbc ./MCAL/timers/timers.o
+                0x000002c6                timer1_ICU_init
+ .text.timer1_ICU_deinit
+                0x00000382       0x28 ./MCAL/timers/timers.o
+                0x00000382                timer1_ICU_deinit
+ .text.timer1_ICU_disable
+                0x000003aa       0x1c ./MCAL/timers/timers.o
+                0x000003aa                timer1_ICU_disable
+ .text.timer1_ICU_enable
+                0x000003c6       0x1c ./MCAL/timers/timers.o
+                0x000003c6                timer1_ICU_enable
+ .text.timer1_ICU_getCapturedValue
+                0x000003e2       0x16 ./MCAL/timers/timers.o
+                0x000003e2                timer1_ICU_getCapturedValue
+ .text.timer1_ICU_callbackInit
+                0x000003f8       0x24 ./MCAL/timers/timers.o
+                0x000003f8                timer1_ICU_callbackInit
+ .text.timer1_ICU_edgeSelect
+                0x0000041c       0x42 ./MCAL/timers/timers.o
+                0x0000041c                timer1_ICU_edgeSelect
+ .text.__vector_10
+                0x0000045e       0x66 ./MCAL/timers/timers.o
+                0x0000045e                __vector_10
+ .text.__vector_6
+                0x000004c4       0x66 ./MCAL/timers/timers.o
+                0x000004c4                __vector_6
+ .text.adc_init
+                0x0000052a      0x11a ./MCAL/adc/adc.o
+                0x0000052a                adc_init
+ .text.adc_readChannel
+                0x00000644       0x38 ./MCAL/adc/adc.o
+                0x00000644                adc_readChannel
+ .text.adc_callbackInit
+                0x0000067c       0x24 ./MCAL/adc/adc.o
+                0x0000067c                adc_callbackInit
+ .text.__vector_16
+                0x000006a0       0x66 ./MCAL/adc/adc.o
+                0x000006a0                __vector_16
+ .text.main     0x00000706       0x82 ./app.o
+                0x00000706                main
+ .text.adc_callback
+                0x00000788       0x50 ./app.o
+                0x00000788                adc_callback
+ .text.timer0_callback
+                0x000007d8       0x14 ./app.o
+                0x000007d8                timer0_callback
+ .text.libgcc   0x000007ec        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000007ec        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x000007ec                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000007ec        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000007ec                exit
+                0x000007ec                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000007ec        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x000007f0                _etext = .
+
+.data           0x00800060        0x0 load address 0x000007f0
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./MCAL/timers/timers.o
+ .data          0x00800060        0x0 ./MCAL/adc/adc.o
+ .data          0x00800060        0x0 ./app.o
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800060                . = ALIGN (0x2)
+                0x00800060                _edata = .
+                0x00800060                PROVIDE (__data_end, .)
+
+.bss            0x00800060        0xb
+                0x00800060                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800060        0x0 ./MCAL/timers/timers.o
+ .bss           0x00800060        0x0 ./MCAL/adc/adc.o
+ .bss           0x00800060        0x0 ./app.o
+ .bss           0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ .bss.PWM_clock_select
+                0x00800060        0x1 ./MCAL/timers/timers.o
+ .bss.ICU_clock_select
+                0x00800061        0x1 ./MCAL/timers/timers.o
+ .bss.ICU_callback_local
+                0x00800062        0x2 ./MCAL/timers/timers.o
+ .bss.timer0_callback_local
+                0x00800064        0x2 ./MCAL/timers/timers.o
+ .bss.adc_first_reading_flag
+                0x00800066        0x1 ./app.o
+                0x00800066                adc_first_reading_flag
+ *(COMMON)
+ COMMON         0x00800067        0x2 ./MCAL/adc/adc.o
+                0x00800067                adc_callback_local
+ COMMON         0x00800069        0x2 ./app.o
+                0x00800069                adc_result
+                0x0080006b                PROVIDE (__bss_end, .)
+                0x000007f0                __data_load_start = LOADADDR (.data)
+                0x000007f0                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x0080006b        0x0
+                0x0080006b                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x0080006b                PROVIDE (__noinit_end, .)
+                0x0080006b                _end = .
+                0x0080006b                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x100
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x98 ./MCAL/timers/timers.o
+ .debug_aranges
+                0x00000098       0x38 ./MCAL/adc/adc.o
+ .debug_aranges
+                0x000000d0       0x30 ./app.o
+
+.debug_pubnames
+                0x00000000      0x261
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000      0x188 ./MCAL/timers/timers.o
+ .debug_pubnames
+                0x00000188       0x6f ./MCAL/adc/adc.o
+ .debug_pubnames
+                0x000001f7       0x6a ./app.o
+
+.debug_info     0x00000000      0xb37
+ *(.debug_info)
+ .debug_info    0x00000000      0x495 ./MCAL/timers/timers.o
+ .debug_info    0x00000495      0x2a0 ./MCAL/adc/adc.o
+ .debug_info    0x00000735      0x402 ./app.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x283
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xec ./MCAL/timers/timers.o
+ .debug_abbrev  0x000000ec       0xd7 ./MCAL/adc/adc.o
+ .debug_abbrev  0x000001c3       0xc0 ./app.o
+
+.debug_line     0x00000000      0xa6d
+ *(.debug_line)
+ .debug_line    0x00000000      0x4f6 ./MCAL/timers/timers.o
+ .debug_line    0x000004f6      0x28a ./MCAL/adc/adc.o
+ .debug_line    0x00000780      0x2ed ./app.o
+
+.debug_frame    0x00000000      0x1a0
+ *(.debug_frame)
+ .debug_frame   0x00000000      0x110 ./MCAL/timers/timers.o
+ .debug_frame   0x00000110       0x50 ./MCAL/adc/adc.o
+ .debug_frame   0x00000160       0x40 ./app.o
+
+.debug_str      0x00000000      0xa3a
+ *(.debug_str)
+ .debug_str     0x00000000      0x63b ./MCAL/timers/timers.o
+                                0x66f (size before relaxing)
+ .debug_str     0x0000063b      0x3a4 ./MCAL/adc/adc.o
+                                0x4c0 (size before relaxing)
+ .debug_str     0x000009df       0x5b ./app.o
+                                0x794 (size before relaxing)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo  0x00000000     0xce79
+ *(.debug_macinfo)
+ .debug_macinfo
+                0x00000000     0x45a6 ./MCAL/timers/timers.o
+ .debug_macinfo
+                0x000045a6     0x4617 ./MCAL/adc/adc.o
+ .debug_macinfo
+                0x00008bbd     0x42bc ./app.o
+OUTPUT(PWM_generator.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000       0xe8
+ .debug_ranges  0x00000000       0x90 ./MCAL/timers/timers.o
+ .debug_ranges  0x00000090       0x30 ./MCAL/adc/adc.o
+ .debug_ranges  0x000000c0       0x28 ./app.o
